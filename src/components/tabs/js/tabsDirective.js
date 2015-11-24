@@ -105,7 +105,7 @@ function MdTabs () {
               'aria-disabled="{{!$mdTabsCtrl.canPageBack()}}" ' +
               'ng-class="{ \'md-disabled\': !$mdTabsCtrl.canPageBack() }" ' +
               'ng-if="$mdTabsCtrl.shouldPaginate" ' +
-              'ng-click="$mdTabsCtrl.previousPage()"> ' +
+              'ng-click="$mdTabsCtrl.previousPage($event)"> ' +
             '<md-icon md-svg-icon="md-tabs-arrow"></md-icon> ' +
           '</md-prev-button> ' +
           '<md-next-button ' +
@@ -115,7 +115,7 @@ function MdTabs () {
               'aria-disabled="{{!$mdTabsCtrl.canPageForward()}}" ' +
               'ng-class="{ \'md-disabled\': !$mdTabsCtrl.canPageForward() }" ' +
               'ng-if="$mdTabsCtrl.shouldPaginate" ' +
-              'ng-click="$mdTabsCtrl.nextPage()"> ' +
+              'ng-click="$mdTabsCtrl.nextPage($event)"> ' +
             '<md-icon md-svg-icon="md-tabs-arrow"></md-icon> ' +
           '</md-next-button> ' +
           '<md-tabs-canvas ' +

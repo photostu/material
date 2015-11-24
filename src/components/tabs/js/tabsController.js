@@ -307,27 +307,33 @@ function MdTabsController ($scope, $element, $window, $mdConstant, $mdTabInkRipp
   /**
    * Slides the tabs over approximately one page forward.
    */
-  function nextPage () {
-    var viewportWidth = elements.canvas.clientWidth,
-        totalWidth    = viewportWidth + ctrl.offsetLeft,
-        i, tab;
-    for (i = 0; i < elements.tabs.length; i++) {
-      tab = elements.tabs[ i ];
-      if (tab.offsetLeft + tab.offsetWidth > totalWidth) break;
+  function nextPage (evt) {
+    // only a left click should perform this op
+    if (evt.button===0){
+      var viewportWidth = elements.canvas.clientWidth,
+          totalWidth    = viewportWidth + ctrl.offsetLeft,
+          i, tab;
+      for (i = 0; i < elements.tabs.length; i++) {
+        tab = elements.tabs[ i ];
+        if (tab.offsetLeft + tab.offsetWidth > totalWidth) break;
+      }
+      ctrl.offsetLeft = fixOffset(tab.offsetLeft);
     }
-    ctrl.offsetLeft = fixOffset(tab.offsetLeft);
   }
 
   /**
    * Slides the tabs over approximately one page backward.
    */
-  function previousPage () {
-    var i, tab;
-    for (i = 0; i < elements.tabs.length; i++) {
-      tab = elements.tabs[ i ];
-      if (tab.offsetLeft + tab.offsetWidth >= ctrl.offsetLeft) break;
+  function previousPage (evt) {
+    // only a left click should perform this op
+    if (evt.button===0){
+      var i, tab;
+      for (i = 0; i < elements.tabs.length; i++) {
+        tab = elements.tabs[ i ];
+        if (tab.offsetLeft + tab.offsetWidth >= ctrl.offsetLeft) break;
+      }
+      ctrl.offsetLeft = fixOffset(tab.offsetLeft + tab.offsetWidth - elements.canvas.clientWidth);
     }
-    ctrl.offsetLeft = fixOffset(tab.offsetLeft + tab.offsetWidth - elements.canvas.clientWidth);
   }
 
   /**
